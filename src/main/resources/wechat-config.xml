@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<wechat-config>
+    <appId>*****</appId>
+    <secret>*****</secret>
+    <token>*****</token>
+    <aesKey>*****</aesKey>
+    <oauth2redirectUri>*****</oauth2redirectUri>
+</wechat-config>
