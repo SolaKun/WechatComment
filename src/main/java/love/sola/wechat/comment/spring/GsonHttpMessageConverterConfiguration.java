@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import love.sola.wechat.comment.entity.Comment;
+import org.apache.commons.codec.binary.Base64;
 import org.hibernate.Hibernate;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.Date;
 
 @Configuration
@@ -62,10 +64,11 @@ public class GsonHttpMessageConverterConfiguration {
 				.registerTypeAdapter(Date.class, (JsonSerializer<Date>) (src, typeOfSrc, context) -> new JsonPrimitive(src.getTime()))
 				.registerTypeAdapter(Comment.class, (JsonSerializer<Comment>) (src, typeOfSrc, context) -> context.serialize(new Comment.Json(src)))
 				.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY)
+				.registerTypeHierarchyAdapter(byte[].class, new ByteArrayToBase64TypeAdapter())
 				.create();
 	}
 
-	public static class HibernateProxyTypeAdapter extends TypeAdapter<HibernateProxy> {
+	private static class HibernateProxyTypeAdapter extends TypeAdapter<HibernateProxy> {
 
 		public static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {
 			@Override
@@ -102,6 +105,18 @@ public class GsonHttpMessageConverterConfiguration {
 			// Serialize the value
 			delegate.write(out, unproxiedValue);
 		}
+	}
+
+	private static class ByteArrayToBase64TypeAdapter implements JsonSerializer<byte[]>, JsonDeserializer<byte[]> {
+
+		public byte[] deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+			return Base64.decodeBase64(json.getAsString());
+		}
+
+		public JsonElement serialize(byte[] src, Type typeOfSrc, JsonSerializationContext context) {
+			return new JsonPrimitive(Base64.encodeBase64String(src));
+		}
+
 	}
 
 }

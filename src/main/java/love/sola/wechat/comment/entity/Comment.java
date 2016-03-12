@@ -28,9 +28,10 @@ public class Comment implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parent")
 	Comment parent;
-	@Column(nullable = false)
-	String wechat;
-	@Column(insertable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(nullable = false)
+	User user;
+	@Column(insertable = false, updatable = false, columnDefinition = "timestamp NOT NULL")
 	@ColumnDefault("CURRENT_TIMESTAMP")
 	Date timestamp;
 	@Column(nullable = false, columnDefinition = "TEXT")
@@ -40,14 +41,14 @@ public class Comment implements Serializable {
 
 		int id;
 		int parent;
-		String wechat;
+		User user;
 		Date timestamp;
 		String text;
 
 		public Json(Comment comment) {
 			id = comment.id;
 			if (comment.parent != null) parent = comment.parent.id;
-			wechat = comment.wechat;
+			user = comment.user;
 			timestamp = comment.timestamp;
 			text = comment.text;
 		}

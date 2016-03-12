@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -24,8 +22,10 @@ public class User implements Serializable {
 
 	@Id
 	String id;
-	String avatar;
+	@Column(length = 1)
 	String sex;
+	@Column(length = 20)
 	String nickname;
+	String avatar;
 
 }
