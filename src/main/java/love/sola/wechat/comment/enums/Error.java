@@ -21,6 +21,7 @@ public class Error {
 	public static final Error OPERATOR_NOT_FOUND = new Error(40401);
 	public static final Error INTERNAL_ERROR = new Error(50000);
 	public static final Error DATABASE_ERROR = new Error(50001);
+	public static final Error WECHAT_ERROR = new Error(50002);
 
 	public int errCode;
 	public String errMsg;
