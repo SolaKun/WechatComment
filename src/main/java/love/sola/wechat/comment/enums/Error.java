@@ -17,8 +17,9 @@ public class Error {
 	public static final Error LENGTH_LIMIT_EXCEEDED = new Error(40002);
 	public static final Error UNAUTHORIZED = new Error(40100);
 	public static final Error PERMISSION_DENIED = new Error(40300);
-	public static final Error USER_NOT_FOUND = new Error(40400);
-	public static final Error OPERATOR_NOT_FOUND = new Error(40401);
+	public static final Error API_NOT_EXISTS = new Error(40400);
+	public static final Error USER_NOT_FOUND = new Error(40401);
+	public static final Error OPERATOR_NOT_FOUND = new Error(40402);
 	public static final Error INTERNAL_ERROR = new Error(50000);
 	public static final Error DATABASE_ERROR = new Error(50001);
 	public static final Error WECHAT_ERROR = new Error(50002);

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
 /**
  * ***********************************************
@@ -40,11 +42,10 @@ public class ErrorHandler {
 		return Error.WECHAT_ERROR.withMsg(e.getMessage());
 	}
 
-	@ExceptionHandler(Exception.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	Error internalException(Exception e) {
-		e.printStackTrace();
-		return Error.INTERNAL_ERROR.withMsg(e.getMessage());
+	@ExceptionHandler({NoHandlerFoundException.class, NoSuchRequestHandlingMethodException.class})
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	Error notFoundException(Exception e) {
+		return Error.API_NOT_EXISTS.withMsg(e.getMessage());
 	}
 
 }
