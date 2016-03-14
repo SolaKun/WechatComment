@@ -20,7 +20,7 @@ public class AsyncService {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	static final String CACHE_URL = "http://sola.love/wximg/work.php";
+	static final String CACHE_URL = "http://cache.sola.love/wximg/work.php";
 
 	@Async
 	public void cacheUserAvatar(String url, String id) {
