@@ -15,8 +15,8 @@ import java.util.Map;
  */
 public class Lang {
 
-	public static Map<String, String> messages;
-	public static Map<String, MessageFormat> format_cache = new HashMap<>(32);
+	protected static Map<String, String> messages;
+	protected static Map<String, MessageFormat> format_cache = new HashMap<>(32);
 
 	static {
 		InputStream in = Lang.class.getClassLoader().getResourceAsStream("lang.yml");
