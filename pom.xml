@@ -6,7 +6,7 @@
 	<groupId>love.sola.wechat.comment</groupId>
 	<artifactId>WechatComment</artifactId>
 	<version>0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>WechatComment</name>
 	<description>A comments system integrate with wechat</description>
@@ -139,6 +139,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
