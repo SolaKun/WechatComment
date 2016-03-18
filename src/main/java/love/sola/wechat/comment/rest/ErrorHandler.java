@@ -1,14 +1,14 @@
 package love.sola.wechat.comment.rest;
 
 import love.sola.wechat.comment.enums.Error;
+import love.sola.wechat.comment.enums.RestError;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import org.hibernate.HibernateException;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * ***********************************************
@@ -21,23 +21,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ErrorHandler {
 
 	@ExceptionHandler(HttpSessionRequiredException.class)
-	@ResponseStatus(HttpStatus.UNAUTHORIZED)
-	Error unauthorizedException() {
-		return Error.UNAUTHORIZED;
+	ResponseEntity<Error> unauthorizedException() {
+		return RestError.UNAUTHORIZED;
 	}
 
 	@ExceptionHandler(HibernateException.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	Error databaseException(HibernateException e) {
+	ResponseEntity<Error> databaseException(HibernateException e) {
 		e.printStackTrace();
-		return Error.DATABASE_ERROR.withMsg(e.getMessage());
+		return RestError.DATABASE_ERROR.withMsg(e.getMessage());
 	}
 
 	@ExceptionHandler(WxErrorException.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	Error wxException(HibernateException e) {
+	ResponseEntity<Error> wxException(HibernateException e) {
 		e.printStackTrace();
-		return Error.WECHAT_ERROR.withMsg(e.getMessage());
+		return RestError.WECHAT_ERROR.withMsg(e.getMessage());
 	}
 
 }
