@@ -1,10 +1,11 @@
 package love.sola.wechat.comment.entity;
 
-import love.sola.wechat.comment.AbstractIntegrationTest;
+import love.sola.wechat.comment.AbstractSpringIntegrationTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertTrue;
  * Don't modify this source without my agreement
  * ***********************************************
  */
-public class RepositoryTest extends AbstractIntegrationTest {
+public class RepositoryTest extends AbstractSpringIntegrationTest {
 
 	@Autowired
 	UserRepository userRepository;

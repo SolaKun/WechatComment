@@ -1,5 +1,6 @@
 package love.sola.wechat.comment.rest;
 
+import love.sola.wechat.comment.AbstractSpringIntegrationTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
@@ -15,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Don't modify this source without my agreement
  * ***********************************************
  */
-public class ErrorHandlerTest {
+public class ErrorHandlerTest extends AbstractSpringIntegrationTest {
 
 	private MockMvc mockMvc;
 
