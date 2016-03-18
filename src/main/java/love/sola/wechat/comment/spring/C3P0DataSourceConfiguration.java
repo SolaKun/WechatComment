@@ -13,7 +13,7 @@ import javax.sql.DataSource;
  * ***********************************************
  */
 @Configuration
-public class DataSourceConfiguration {
+public class C3P0DataSourceConfiguration {
 
 	@Bean
 	DataSource dataSource() {

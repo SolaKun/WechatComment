@@ -2,6 +2,7 @@ package love.sola.wechat.comment.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -18,6 +19,7 @@ import java.util.Date;
 @Entity
 @Table(name = "comments")
 @Data
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comment implements Serializable {

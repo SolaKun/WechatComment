@@ -10,7 +10,7 @@ import static org.junit.Assert.assertNotNull;
  * Don't modify this source without my agreement
  * ***********************************************
  */
-public class TestWxMpXmlConfig {
+public class WxMpXmlConfigTest {
 	
 	@Test
 	public void test() {

@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
  * Don't modify this source without my agreement
  * ***********************************************
  */
-public class TestLang {
+public class LangTest {
 
 	@Test
 	public void testNotNull() {

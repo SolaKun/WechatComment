@@ -4,10 +4,17 @@
         <property name="maxPoolSize">10</property>
         <property name="minPoolSize">2</property>
         <property name="acquireIncrement">1</property>
-        <property name="user">***</property>
-        <property name="password">***</property>
+        <property name="user">root</property>
+        <property name="password"></property>
         <property name="jdbcUrl">jdbc:mysql://localhost:3306/wxcomments?autoReconnect=true&amp;characterEncoding=utf8</property>
         <property name="idleConnectionTestPeriod">1800</property>
         <property name="maxIdleTime">3600</property>
     </default-config>
+    <named-config name="testing">
+        <property name="driverClass">org.h2.Driver</property>
+        <property name="maxPoolSize">10</property>
+        <property name="minPoolSize">2</property>
+        <property name="acquireIncrement">1</property>
+        <property name="jdbcUrl">jdbc:h2:mem:test</property>
+    </named-config>
 </c3p0-config>
