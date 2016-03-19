@@ -1,11 +1,9 @@
 package love.sola.wechat.comment.entity;
 
 import love.sola.wechat.comment.AbstractSpringIntegrationTest;
+import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.TestPropertySource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,28 +18,21 @@ import static org.junit.Assert.assertTrue;
  */
 public class RepositoryTest extends AbstractSpringIntegrationTest {
 
-	@Autowired
-	UserRepository userRepository;
-	@Autowired
-	CommentRepository commentRepository;
-
+	@Before
 	public void setup() {
 		userRepository.save(new User("user1", "1", "tom", "foo"));
 		userRepository.save(new User("user2", "2", "cat", "bar"));
-		commentRepository.save(new Comment(1, null, userRepository.findOne("user1"), null, "Test Comment"));
-		commentRepository.save(new Comment(2, null, userRepository.findOne("user1"), null, "Test Comment"));
-		commentRepository.save(new Comment(3, null, userRepository.findOne("user1"), null, "Test Comment"));
-		commentRepository.save(new Comment(4, null, userRepository.findOne("user1"), null, "Test Comment"));
-		commentRepository.save(new Comment(5, commentRepository.findOne(1), userRepository.findOne("user1"), null, "Test Reply"));
-		commentRepository.save(new Comment(6, commentRepository.findOne(1), userRepository.findOne("user1"), null, "Test Reply"));
-		commentRepository.save(new Comment(7, commentRepository.findOne(2), userRepository.findOne("user2"), null, "Test Reply"));
+		commentRepository.save(new Comment(null, null, userRepository.findOne("user1"), null, "Test Comment"));
+		commentRepository.save(new Comment(null, null, userRepository.findOne("user1"), null, "Test Comment"));
+		commentRepository.save(new Comment(null, null, userRepository.findOne("user1"), null, "Test Comment"));
+		commentRepository.save(new Comment(null, null, userRepository.findOne("user1"), null, "Test Comment"));
+		commentRepository.save(new Comment(null, commentRepository.findOne(1), userRepository.findOne("user1"), null, "Test Reply"));
+		commentRepository.save(new Comment(null, commentRepository.findOne(1), userRepository.findOne("user1"), null, "Test Reply"));
+		commentRepository.save(new Comment(null, commentRepository.findOne(2), userRepository.findOne("user2"), null, "Test Reply"));
 	}
 
 	@Test
-	@Rollback
 	public void testDelete() {
-		setup();
-
 		List<Comment> delList = commentRepository.deleteComment(1);
 		assertTrue(delList.containsAll(
 				Arrays.asList(
@@ -61,10 +52,7 @@ public class RepositoryTest extends AbstractSpringIntegrationTest {
 	}
 
 	@Test
-	@Rollback
 	public void testFetch() {
-		setup();
-
 		List<Comment> fetchRoot = commentRepository.findRootComments(new PageRequest(0, 20)).getContent();
 		assertTrue(fetchRoot.containsAll(
 				Arrays.asList(

@@ -2,7 +2,6 @@ package love.sola.wechat.comment.rest;
 
 import love.sola.wechat.comment.AbstractSpringIntegrationTest;
 import love.sola.wechat.comment.entity.User;
-import love.sola.wechat.comment.entity.UserRepository;
 import love.sola.wechat.comment.enums.Error;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,8 +26,6 @@ public class RestCommentTest extends AbstractSpringIntegrationTest {
 
 	private MockMvc mockMvc;
 	private User mockUser = new User("mock_user", "1", "mocking", "non_avatar");
-	@Autowired
-	UserRepository userRepository;
 	@Autowired
 	RestComment restComment;
 	@Autowired
@@ -62,7 +59,7 @@ public class RestCommentTest extends AbstractSpringIntegrationTest {
 				.andExpect(jsonPath("$.text").value("Testing"));
 		mockMvc
 				.perform(
-						get("/comment/all")
+						get("/comment/0")
 								.accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
 				)
 				.andExpect(status().isOk())

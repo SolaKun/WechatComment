@@ -35,7 +35,7 @@ public class RestComment {
 	@Autowired
 	SessionFactory sessionFactory;
 
-	@RequestMapping("all")
+	@RequestMapping(value = "0", method = RequestMethod.GET)
 	Map<String, Object> fetch(@PageableDefault(sort = "timestamp", direction = Sort.Direction.DESC) Pageable pageable) {
 		Map<String, Object> resp = new HashMap<>();
 		Page<Comment> page = repository.findRootComments(pageable);
