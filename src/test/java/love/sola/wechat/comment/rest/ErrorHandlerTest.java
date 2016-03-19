@@ -1,6 +1,7 @@
 package love.sola.wechat.comment.rest;
 
 import love.sola.wechat.comment.AbstractSpringIntegrationTest;
+import love.sola.wechat.comment.enums.Error;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
@@ -29,11 +30,11 @@ public class ErrorHandlerTest extends AbstractSpringIntegrationTest {
 	}
 
 	@Test()
-	public void test() throws Exception {
+	public void testUnauthorized() throws Exception {
 		this.mockMvc.perform(post("/comment/0").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
 				.andExpect(status().isUnauthorized())
 				.andExpect(content().contentType("application/json;charset=UTF-8"))
-				.andExpect(jsonPath("$.errCode").value(40100));
+				.andExpect(jsonPath("$.errCode").value(Error.UNAUTHORIZED.errCode));
 	}
 
 }

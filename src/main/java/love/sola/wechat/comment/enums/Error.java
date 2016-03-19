@@ -27,8 +27,8 @@ public class Error {
 	public static final Error DATABASE_ERROR = new Error(50001);
 	public static final Error WECHAT_ERROR = new Error(50002);
 
-	public int errCode;
-	public String errMsg;
+	public final int errCode;
+	public final String errMsg;
 
 	private Error(int code) {
 		this(code, lang("ERR_" + code));
