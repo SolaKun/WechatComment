@@ -1,6 +1,5 @@
 package love.sola.wechat.comment.enums;
 
-
 import org.springframework.http.ResponseEntity;
 
 import static love.sola.wechat.comment.config.Lang.lang;
