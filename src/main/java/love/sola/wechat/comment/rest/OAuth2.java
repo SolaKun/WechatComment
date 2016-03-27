@@ -8,6 +8,7 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +43,9 @@ public class OAuth2 {
 	String callback(@RequestParam("code") String code,
 	                @RequestParam("state") String state,
 	                HttpServletRequest req) throws WxErrorException, IOException {
+		if (!state.equals("wcs_login")) {
+			return "redirect:http://wts.sola.love/oauth2/callback?code=" + code + "&state=" + state;
+		}
 		WxMpOAuth2AccessToken token = wxMpService.oauth2getAccessToken(code);
 		WxMpUser wxUser = wxMpService.oauth2getUserInfo(token, "zh_CN");
 		User user = new User(wxUser.getOpenId(), wxUser.getSex(), wxUser.getNickname(), wxUser.getHeadImgUrl());
