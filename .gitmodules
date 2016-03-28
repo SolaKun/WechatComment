@@ -1,0 +1,4 @@
+[submodule "src/main/resources/static"]
+	path = src/main/resources/static
+	url = https://github.com/eva990417744/message
+	branch = master
