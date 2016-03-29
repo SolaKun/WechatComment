@@ -22,6 +22,11 @@ import java.util.Map;
  * Don't modify this source without my agreement
  * ***********************************************
  */
+@CrossOrigin(origins = "*",
+		allowCredentials = "true",
+		exposedHeaders = "x-auth-token",
+		methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.DELETE},
+		maxAge = 3600 * 24)
 @RestController
 @RequestMapping("/comment")
 @SessionAttributes("user")
@@ -49,7 +54,7 @@ public class RestComment {
 
 	@RequestMapping(value = "0", method = RequestMethod.POST)
 	Object add(@ModelAttribute("user") User user,
-	           @RequestParam(name = "text", required = true) String text,
+	           @RequestParam(name = "text") String text,
 	           @RequestParam(name = "parent", defaultValue = "0") int parent) {
 		Comment parentComment = repository.findOne(parent);
 		if (parent != 0 && parentComment == null) {
@@ -72,7 +77,7 @@ public class RestComment {
 	@RequestMapping(value = "{id:\\d+}", method = RequestMethod.PATCH)
 	Object modify(@PathVariable("id") Comment comment,
 	              @ModelAttribute("user") User user,
-	              @RequestParam(value = "text", required = true) String text) {
+	              @RequestParam(value = "text") String text) {
 		if (comment == null) {
 			return RestError.COMMENT_NOT_FOUND;
 		}
