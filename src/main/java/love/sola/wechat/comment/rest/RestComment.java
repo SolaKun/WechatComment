@@ -45,9 +45,7 @@ public class RestComment {
 		Map<String, Object> resp = new HashMap<>();
 		Page<Comment> page = repository.findRootComments(pageable);
 		List<Comment> parents = page.getContent();
-		List<Comment> replies = repository.findSubComments(parents);
 		resp.put("comments", parents);
-		resp.put("replies", replies);
 		resp.put("totalPage", page.getTotalPages());
 		return resp;
 	}
@@ -71,7 +69,10 @@ public class RestComment {
 		if (comment == null) {
 			return RestError.COMMENT_NOT_FOUND;
 		}
-		return comment;
+		Map<String, Object> resp = new HashMap<>();
+		resp.put("comment", comment);
+		resp.put("replies", repository.findByParent(comment));
+		return resp;
 	}
 
 	@RequestMapping(value = "{id:\\d+}", method = RequestMethod.PATCH)

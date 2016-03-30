@@ -13,7 +13,9 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
-	Page<Comment> findByParent(Pageable page, Integer id);
+	List<Comment> findByParent(Comment id);
+
+	Page<Comment> findByParent(Pageable page, Comment id);
 
 	List<Comment> findByParentIn(Collection<Comment> id, Sort sort);
 
