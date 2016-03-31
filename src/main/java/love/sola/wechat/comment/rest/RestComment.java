@@ -56,7 +56,7 @@ public class RestComment {
 	              @RequestParam(name = "parent", required = false) Integer parent,
 	              @RequestParam(name = "mention", required = false) Integer mention) {
 		Comment parentComment = null;
-		if (parent != null) {
+		if (parent != null && parent > 0) {
 			parentComment = repository.findOne(parent);
 			if (parentComment == null) {
 				return RestError.COMMENT_NOT_FOUND;
