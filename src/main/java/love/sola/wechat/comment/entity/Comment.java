@@ -1,9 +1,6 @@
 package love.sola.wechat.comment.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -30,6 +27,7 @@ public class Comment implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parent")
 	Comment parent;
+	Integer mention;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false)
 	User user;
@@ -39,10 +37,15 @@ public class Comment implements Serializable {
 	@Column(nullable = false, columnDefinition = "TEXT")
 	String text;
 
+	public Comment(int id) {
+		this.id = id;
+	}
+
 	public static class Json {
 
 		int id;
 		int parent;
+		Integer mention;
 		User user;
 		Date timestamp;
 		String text;
@@ -50,6 +53,7 @@ public class Comment implements Serializable {
 		public Json(Comment comment) {
 			id = comment.id;
 			if (comment.parent != null) parent = comment.parent.id;
+			mention = comment.mention;
 			user = comment.user;
 			timestamp = comment.timestamp;
 			text = comment.text;

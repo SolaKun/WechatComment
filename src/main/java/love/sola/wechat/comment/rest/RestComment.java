@@ -51,17 +51,21 @@ public class RestComment {
 	}
 
 	@RequestMapping(value = "0", method = RequestMethod.POST)
-	Object add(@ModelAttribute("user") User user,
-	           @RequestParam(name = "text") String text,
-	           @RequestParam(name = "parent", defaultValue = "0") int parent) {
-		Comment parentComment = repository.findOne(parent);
-		if (parent != 0 && parentComment == null) {
-			return RestError.COMMENT_NOT_FOUND;
+	Object create(@ModelAttribute("user") User user,
+	              @RequestParam(name = "text") String text,
+	              @RequestParam(name = "parent", required = false) Integer parent,
+	              @RequestParam(name = "mention", required = false) Integer mention) {
+		Comment parentComment = null;
+		if (parent != null) {
+			parentComment = repository.findOne(parent);
+			if (parentComment == null) {
+				return RestError.COMMENT_NOT_FOUND;
+			}
 		}
 		if (text.length() > MAX_COMMENT_LENGTH) {
 			return RestError.LENGTH_LIMIT_EXCEEDED;
 		}
-		return repository.save(new Comment(null, parent == 0 ? null : parentComment, user, null, text));
+		return repository.save(new Comment(null, parentComment, mention, user, null, text));
 	}
 
 	@RequestMapping(value = "{id:\\d+}", method = RequestMethod.GET)

@@ -8,7 +8,6 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +53,7 @@ public class OAuth2 {
 		HttpSession session = req.getSession(true);
 		session.setAttribute("user", user);
 		session.setAttribute("wechat", user.getId());
-		return "redirect:http://sola.love/wximg/" + user.getId() + ".jpg";
+		return "redirect:/index.html?token=" + session.getId();
 	}
 
 }

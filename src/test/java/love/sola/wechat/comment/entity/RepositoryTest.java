@@ -22,13 +22,13 @@ public class RepositoryTest extends AbstractSpringIntegrationTest {
 	public void setup() {
 		userRepository.save(new User("user1", "1", "tom", "foo"));
 		userRepository.save(new User("user2", "2", "cat", "bar"));
-		commentRepository.save(new Comment(null, null, userRepository.findOne("user1"), null, "Test Comment"));
-		commentRepository.save(new Comment(null, null, userRepository.findOne("user1"), null, "Test Comment"));
-		commentRepository.save(new Comment(null, null, userRepository.findOne("user1"), null, "Test Comment"));
-		commentRepository.save(new Comment(null, null, userRepository.findOne("user1"), null, "Test Comment"));
-		commentRepository.save(new Comment(null, commentRepository.findOne(1), userRepository.findOne("user1"), null, "Test Reply"));
-		commentRepository.save(new Comment(null, commentRepository.findOne(1), userRepository.findOne("user1"), null, "Test Reply"));
-		commentRepository.save(new Comment(null, commentRepository.findOne(2), userRepository.findOne("user2"), null, "Test Reply"));
+		commentRepository.save(new Comment(null, null, null, userRepository.findOne("user1"), null, "Test Comment"));
+		commentRepository.save(new Comment(null, null, null, userRepository.findOne("user1"), null, "Test Comment"));
+		commentRepository.save(new Comment(null, null, null, userRepository.findOne("user1"), null, "Test Comment"));
+		commentRepository.save(new Comment(null, null, null, userRepository.findOne("user1"), null, "Test Comment"));
+		commentRepository.save(new Comment(null, commentRepository.findOne(1), null, userRepository.findOne("user1"), null, "Test Reply"));
+		commentRepository.save(new Comment(null, commentRepository.findOne(1), null, userRepository.findOne("user1"), null, "Test Reply"));
+		commentRepository.save(new Comment(null, commentRepository.findOne(2), null, userRepository.findOne("user2"), null, "Test Reply"));
 	}
 
 	@Test
@@ -36,17 +36,17 @@ public class RepositoryTest extends AbstractSpringIntegrationTest {
 		List<Comment> delList = commentRepository.deleteComment(1);
 		assertTrue(delList.containsAll(
 				Arrays.asList(
-						new Comment(1, null, null, null, null),
-						new Comment(5, null, null, null, null),
-						new Comment(6, null, null, null, null)
+						new Comment(1),
+						new Comment(5),
+						new Comment(6)
 				)
 		));
 
 		delList = commentRepository.deleteComment(2);
 		assertTrue(delList.containsAll(
 				Arrays.asList(
-						new Comment(2, null, null, null, null),
-						new Comment(7, null, null, null, null)
+						new Comment(2),
+						new Comment(7)
 				)
 		));
 	}
@@ -56,10 +56,10 @@ public class RepositoryTest extends AbstractSpringIntegrationTest {
 		List<Comment> fetchRoot = commentRepository.findRootComments(new PageRequest(0, 20)).getContent();
 		assertTrue(fetchRoot.containsAll(
 				Arrays.asList(
-						new Comment(1, null, null, null, null),
-						new Comment(2, null, null, null, null),
-						new Comment(3, null, null, null, null),
-						new Comment(4, null, null, null, null)
+						new Comment(1),
+						new Comment(2),
+						new Comment(3),
+						new Comment(4)
 				)
 		));
 
@@ -71,9 +71,9 @@ public class RepositoryTest extends AbstractSpringIntegrationTest {
 		);
 		assertTrue(fetchSub.containsAll(
 				Arrays.asList(
-						new Comment(5, null, null, null, null),
-						new Comment(6, null, null, null, null),
-						new Comment(7, null, null, null, null)
+						new Comment(5),
+						new Comment(6),
+						new Comment(7)
 				)
 		));
 	}
