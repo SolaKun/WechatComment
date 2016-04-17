@@ -32,7 +32,7 @@ public class ErrorHandler {
 	}
 
 	@ExceptionHandler(WxErrorException.class)
-	ResponseEntity<Error> wxException(HibernateException e) {
+	ResponseEntity<Error> wxException(WxErrorException e) {
 		e.printStackTrace();
 		return RestError.WECHAT_ERROR.withMsg(e.getMessage());
 	}
