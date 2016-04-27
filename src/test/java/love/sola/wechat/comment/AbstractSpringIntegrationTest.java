@@ -14,10 +14,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 /**
- * ***********************************************
- * Created by Sola on 2016/3/18.
- * Don't modify this source without my agreement
- * ***********************************************
+ * @author Sola {@literal <dev@sola.love>}
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(WechatCommentTestApplication.class)

@@ -17,10 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * ***********************************************
- * Created by Sola on 2016/3/6.
- * Don't modify this source without my agreement
- * ***********************************************
+ * @author Sola {@literal <dev@sola.love>}
  */
 @Controller
 @RequestMapping("/oauth2")

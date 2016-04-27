@@ -12,10 +12,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * ***********************************************
- * Created by Sola on 2016/3/18.
- * Don't modify this source without my agreement
- * ***********************************************
+ * @author Sola {@literal <dev@sola.love>}
  */
 public class ErrorHandlerTest extends AbstractSpringIntegrationTest {
 

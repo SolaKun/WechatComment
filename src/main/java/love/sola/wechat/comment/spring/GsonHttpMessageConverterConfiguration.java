@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Date;
 
+/**
+ * @author Sola {@literal <dev@sola.love>}
+ */
 @Configuration
 @ConditionalOnClass(Gson.class)
 @ConditionalOnMissingClass(name = "com.fasterxml.jackson.core.JsonGenerator")

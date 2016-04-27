@@ -12,10 +12,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * ***********************************************
- * Created by Sola on 2016/3/6.
- * Don't modify this source without my agreement
- * ***********************************************
+ * @author Sola {@literal <dev@sola.love>}
  */
 @Entity
 @Table(name = "users")

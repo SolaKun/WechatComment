@@ -11,10 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * ***********************************************
- * Created by Sola on 2016/3/3.
- * Don't modify this source without my agreement
- * ***********************************************
+ * @author Sola {@literal <dev@sola.love>}
  */
 @Entity
 @Table(name = "comments")

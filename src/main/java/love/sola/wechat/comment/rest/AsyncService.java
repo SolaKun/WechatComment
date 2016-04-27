@@ -10,10 +10,7 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 
 /**
- * ***********************************************
- * Created by Sola on 2016/3/11.
- * Don't modify this source without my agreement
- * ***********************************************
+ * @author Sola {@literal <dev@sola.love>}
  */
 @Service
 public class AsyncService {

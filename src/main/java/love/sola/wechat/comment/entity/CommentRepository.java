@@ -10,6 +10,9 @@ import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @author Sola {@literal <dev@sola.love>}
+ */
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 

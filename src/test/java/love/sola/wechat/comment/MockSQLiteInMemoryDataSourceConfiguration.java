@@ -7,10 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 /**
- * ***********************************************
- * Created by Sola on 2016/3/18.
- * Don't modify this source without my agreement
- * ***********************************************
+ * @author Sola {@literal <dev@sola.love>}
  */
 @Configuration
 public class MockSQLiteInMemoryDataSourceConfiguration {

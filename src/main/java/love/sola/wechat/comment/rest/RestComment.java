@@ -17,10 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ***********************************************
- * Created by Sola on 2016/3/3.
- * Don't modify this source without my agreement
- * ***********************************************
+ * @author Sola {@literal <dev@sola.love>}
  */
 @CrossOrigin(origins = "*",
 		allowCredentials = "true",

@@ -9,10 +9,7 @@ import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
 
 /**
- * ***********************************************
- * Created by Sola on 2016/3/9.
- * Don't modify this source without my agreement
- * ***********************************************
+ * @author Sola {@literal <dev@sola.love>}
  */
 @Configuration
 @EnableSpringHttpSession
